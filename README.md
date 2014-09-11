@@ -100,3 +100,34 @@ secondo, ma è un approccio costoso e lento.
 
 Docker in buona sostanza rende questo approccio economico e
 veloce.
+
+
+
+##L'ecosistema intorno a docker
+
+Docker si ferma però alla gestione "interna" del container.
+Ovvero permette di gestire tutto ciò che pertiene un
+container, come variabili d'ambiente, interfacce di rete
+etc.
+
+Non fornisce però strumenti per gestire insiemi container
+(muovere un container da un host a un altro, organizzare un
+gruppo di container così che vengano deployati in blocco
+etc).
+
+Sono dunque emersi un insieme di tool che rispondono a
+questa esigenza.
+
+####Low level
+- `core-os`, os minimale pensato per essere un host di
+  container
+- `fleetctl`
+- `etcd`
+
+####Mid level
+- `panamax`
+
+####High level
+- `dokku`, barebones
+- `deis`, feature rich
+- `flynn`, come deis
