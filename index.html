@@ -30,37 +30,113 @@
 
       </header>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="introduzione-a-docker" class="anchor" href="#introduzione-a-docker"><span class="octicon octicon-link"></span></a>Introduzione a docker</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h2>
+<a name="cos%C3%A8-docker" class="anchor" href="#cos%C3%A8-docker"><span class="octicon octicon-link"></span></a>Cos'è docker?</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>Prima definizione approssimativa: sistema di
+virtualizzazione.  Non virtualizza l'hardware, ma la
+userland.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>
+<a name="perch%C3%A9-%C3%A8-stato-creato" class="anchor" href="#perch%C3%A9-%C3%A8-stato-creato"><span class="octicon octicon-link"></span></a>Perché è stato creato</h2>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>Per risolvere il problema del deployare applicazioni.
+docker standardizza un formato di container.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Lo sviluppatore si preoccupa di costruire un ambiente
+all'interno del quale la sua applicazione gira.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>Il sistemista prende il container creato e lo deploya sul
+server.</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>
+<a name="le-entit%C3%A0-nel-mondo-docker" class="anchor" href="#le-entit%C3%A0-nel-mondo-docker"><span class="octicon octicon-link"></span></a>Le entità nel mondo docker</h2>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h4>
+<a name="il-container" class="anchor" href="#il-container"><span class="octicon octicon-link"></span></a>Il container</h4>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>È l'ambiente di isolamento. Ha un filesystem suo, processi
+suoi, interfacce network sue etc.
+È la "combinazione" di un'immagine e un processo.</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<h4>
+<a name="limmagine" class="anchor" href="#limmagine"><span class="octicon octicon-link"></span></a>L'immagine</h4>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>È un template read-only che descrive l'ambiente isolato.
+Viene costruita attravero la compilazione di un
+<code>Dockerfile</code>.</p>
+
+<h4>
+<a name="il-dockerfile" class="anchor" href="#il-dockerfile"><span class="octicon octicon-link"></span></a>Il Dockerfile</h4>
+
+<p>È una lista di istruzioni per costruire un'immagine.</p>
+
+<h2>
+<a name="larchitettura-di-docker" class="anchor" href="#larchitettura-di-docker"><span class="octicon octicon-link"></span></a>L'architettura di docker</h2>
+
+<h4>
+<a name="il-demone-docker" class="anchor" href="#il-demone-docker"><span class="octicon octicon-link"></span></a>Il demone docker</h4>
+
+<p>Ascolta su un socket (unix o tcp) e "parla" HTTP.</p>
+
+<p>Esempio: <code>GET /containers/json</code></p>
+
+<h4>
+<a name="docker-cli" class="anchor" href="#docker-cli"><span class="octicon octicon-link"></span></a>docker cli</h4>
+
+<p>È l'interfaccia canonica sul demone.</p>
+
+<p>Esempio: <code>docker ps</code></p>
+
+<h4>
+<a name="il-registro-pubblico-delle-immagini" class="anchor" href="#il-registro-pubblico-delle-immagini"><span class="octicon octicon-link"></span></a>Il registro (pubblico) delle immagini</h4>
+
+<p><a href="https://hub.docker.com">hub.docker.com</a></p>
+
+<h2>
+<a name="vantaggi-e-svantaggi" class="anchor" href="#vantaggi-e-svantaggi"><span class="octicon octicon-link"></span></a>Vantaggi e svantaggi</h2>
+
+<h4>
+<a name="vantaggi" class="anchor" href="#vantaggi"><span class="octicon octicon-link"></span></a>Vantaggi</h4>
+
+<ul>
+<li>Isolamento dei processi a basso costo</li>
+<li>Universalità degli ambienti creati</li>
+</ul><h4>
+<a name="svantaggi" class="anchor" href="#svantaggi"><span class="octicon octicon-link"></span></a>Svantaggi</h4>
+
+<ul>
+<li>Tecnologia immatura (v1.2.0)</li>
+<li>Ecosistema in sviluppo</li>
+</ul><h2>
+<a name="esempio" class="anchor" href="#esempio"><span class="octicon octicon-link"></span></a>Esempio</h2>
+
+<p>Supponiamo che io voglia deployare un'applicazione node
+"hello world". Escludendo una soluzione di tipo PaaS,
+l'approccio tradizionale prevede i seguenti step:</p>
+
+<ol>
+<li>creare una macchina virtuale</li>
+<li>installare l'occorrente per far girare l'applicazione (in
+questo caso nodejs)</li>
+<li>scaricare l'applicazione</li>
+<li>farla partire</li>
+</ol><p>Supponiamo di voler far partire un'altra istanza
+dell'applicazione, ma con una configurazione diversa.</p>
+
+<p>Ci sono due modi:</p>
+
+<ul>
+<li>riutilizzare la macchina virtuale esistente</li>
+<li>creare un'altra macchina virtuale</li>
+</ul><p>Il più conveniente dal punto di vista della gestione è il
+secondo, ma è un approccio costoso e lento.</p>
+
+<p>Docker in buona sostanza rende questo approccio economico e
+veloce.</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
