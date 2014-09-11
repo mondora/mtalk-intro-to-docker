@@ -1,6 +1,6 @@
 require("http")
 	.createServer()
 	.on("request", function (req, res) {
-		res.end("Hello world!");
+		res.end("Hello " + process.env.GREETING_TARGET + "!");
 	})
-	.listen(8080, "0.0.0.0");
+	.listen(8080);
